@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LaLocationDeVoitureModelStoreContainer" CdmEntityContainer="LaLocationDeVoitureEntities">
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="IsTypeOf(LaLocationDeVoitureModel.Reservation)">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="id_reservation" ColumnName="id_reservation" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="cin" ColumnName="cin" />
+          <ScalarProperty Name="date_deb" ColumnName="date_deb" />
+          <ScalarProperty Name="nbr_jour" ColumnName="nbr_jour" />
+          <ScalarProperty Name="lieu_deb" ColumnName="lieu_deb" />
+          <ScalarProperty Name="lieu_fin" ColumnName="lieu_fin" />
+          <ScalarProperty Name="montant" ColumnName="montant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(LaLocationDeVoitureModel.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="cin" ColumnName="cin" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="num_permis" ColumnName="num_permis" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mot_pass" ColumnName="mot_pass" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voiture">
+      <EntityTypeMapping TypeName="IsTypeOf(LaLocationDeVoitureModel.Voiture)">
+        <MappingFragment StoreEntitySet="Voiture">
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="id_voiture" ColumnName="id_voiture" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="marque" ColumnName="marque" />
+          <ScalarProperty Name="modele" ColumnName="modele" />
+          <ScalarProperty Name="motorisation" ColumnName="motorisation" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

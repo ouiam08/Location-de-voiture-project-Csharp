@@ -1,0 +1,75 @@
+﻿@model LaLocationDeVoiture.Models.Reservation
+
+@{
+    ViewBag.Title = "Détails sur une reservation";
+}
+
+<br />
+<br />
+<div>
+    <h4>La reservation : @Html.DisplayFor(model => model.id_reservation)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.matricule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matricule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_deb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_deb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nbr_jour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nbr_jour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lieu_deb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lieu_deb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lieu_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lieu_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montant)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.id_reservation }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Supprimer", "Delete", new { id = Model.id_reservation }, new { @class = "btn btn-danger" }) |
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-info" })
+</p>

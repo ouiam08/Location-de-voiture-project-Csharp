@@ -1,0 +1,75 @@
+﻿@model LaLocationDeVoiture.Models.Voiture
+
+@{
+    ViewBag.Title = "Ajout d'une voiture";
+}
+
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group row">
+    <label class="form-label control-label col-md-2">Matricule</label>
+    <input type="text" class="form-control col-md-10" id="matricule" name="matricule" placeholder="Matricule" required>
+
+</div>
+
+    <div class="form-group row">
+        <label class="form-label control-label col-md-2">Marque</label>
+        <input type="text" class="form-control col-md-10" id="marque" name="marque" placeholder="Marque" required>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="form-label control-label col-md-2">Modele</label>
+        <input type="text" class="form-control col-md-10" id="modele" name="modele" placeholder="Modele" required>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="form-label control-label col-md-2">Motorisation</label>
+        <select class="form-control col-md-10" id="motorisation" name="motorisation" placeholder="Motorisation" required>
+            <option>Essence</option>
+            <option>Diesel</option>
+            <option>Hybride</option>
+            <option>Electrique</option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label class="form-label control-label col-md-2">Etat</label>
+        <select class="form-control col-md-10" id="etat" name="etat" placeholder="Etat" required>
+            <option>disponible</option>
+            <option>pas disponible</option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label class="form-label control-label col-md-2">Prix</label>
+        <input type="number" class="form-control col-md-10" id="prix" name="prix" placeholder="Prix" required>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Enregistrer" class="btn btn-block btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-info" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

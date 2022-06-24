@@ -1,0 +1,73 @@
+﻿@model IEnumerable<LaLocationDeVoiture.Models.User>
+
+@{
+    ViewBag.Title = "Utilisateurs";
+}
+
+<br />
+<br />
+
+<table class="table table-primary">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_permis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.num_permis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.id_user }, new { @class = "btn btn-warning" }) &nbsp;
+                @Html.ActionLink("Détails", "Details", new { id = item.id_user }, new { @class = "btn btn-info" }) &nbsp;
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.id_user }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Ajouter un Utilisateur", "Create", null, new { @class = "btn btn-block btn-info" })
+</p>

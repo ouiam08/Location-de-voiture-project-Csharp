@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LaLocationDeVoiture.Models.Voiture>
+
+@{
+    ViewBag.Title = "Voitures";
+}
+
+<br />
+<br />
+
+
+<table class="table table-primary">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.matricule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.marque)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modele)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.motorisation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.etat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.matricule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modele)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.motorisation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.etat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.id_voiture }, new { @class = "btn btn-info" }) &nbsp;
+                @if (Session["PrenomAdmin"] != null)
+                {
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.id_voiture }, new { @class = "btn btn-warning" })
+                    <br />
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id_voiture }, new { @class = "btn btn-danger" })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+@if (Session["PrenomAdmin"] != null)
+{
+    <p>
+        @Html.ActionLink("Ajouter une Voiture", "Create", null, new { @class = "btn btn-block btn-success" })
+    </p>
+}
+

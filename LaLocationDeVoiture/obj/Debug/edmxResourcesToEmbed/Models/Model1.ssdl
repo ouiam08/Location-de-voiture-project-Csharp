@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaLocationDeVoitureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="id_reservation" />
+    </Key>
+    <Property Name="id_reservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matricule" Type="varchar" MaxLength="50" />
+    <Property Name="cin" Type="varchar" MaxLength="50" />
+    <Property Name="date_deb" Type="date" />
+    <Property Name="nbr_jour" Type="int" />
+    <Property Name="lieu_deb" Type="varchar" MaxLength="50" />
+    <Property Name="lieu_fin" Type="varchar" MaxLength="50" />
+    <Property Name="montant" Type="float" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cin" Type="varchar" MaxLength="50" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="nom" Type="varchar" MaxLength="50" />
+    <Property Name="prenom" Type="varchar" MaxLength="50" />
+    <Property Name="tel" Type="varchar" MaxLength="50" />
+    <Property Name="num_permis" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="mot_pass" Type="varchar" MaxLength="50" />
+    <Property Name="role" Type="int" />
+  </EntityType>
+  <EntityType Name="Voiture">
+    <Key>
+      <PropertyRef Name="id_voiture" />
+    </Key>
+    <Property Name="id_voiture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matricule" Type="varchar" MaxLength="50" />
+    <Property Name="marque" Type="varchar" MaxLength="50" />
+    <Property Name="modele" Type="varchar" MaxLength="50" />
+    <Property Name="motorisation" Type="varchar" MaxLength="50" />
+    <Property Name="prix" Type="float" />
+    <Property Name="etat" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="LaLocationDeVoitureModelStoreContainer">
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Voiture" EntityType="Self.Voiture" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

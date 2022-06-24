@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaLocationDeVoitureModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="id_reservation" />
+    </Key>
+    <Property Name="id_reservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_deb" Type="DateTime" Precision="0" />
+    <Property Name="nbr_jour" Type="Int32" />
+    <Property Name="lieu_deb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lieu_fin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="montant" Type="Double" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="num_permis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mot_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Voiture">
+    <Key>
+      <PropertyRef Name="id_voiture" />
+    </Key>
+    <Property Name="id_voiture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="marque" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="modele" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="motorisation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prix" Type="Double" />
+    <Property Name="etat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="LaLocationDeVoitureEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="Voiture" EntityType="Self.Voiture" />
+  </EntityContainer>
+</Schema>

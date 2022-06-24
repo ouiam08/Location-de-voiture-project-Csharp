@@ -1,0 +1,281 @@
+﻿@model IEnumerable<LaLocationDeVoiture.Models.ReservationViewModels>
+
+@{
+    ViewBag.Title = "Louer une voiture ";
+}
+
+
+@if (Session["PrenomAdmin"] != null)
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <table class="table table-primary">
+        <tr>
+            <th>Matricule</th>
+            <th>CIN</th>
+            <th>Date de Début</th>
+            <th>Nombre de jours</th>
+            <th>Lieu de mise en charge</th>
+            <th>Lieu de dépôt</th>
+            <th>Montant</th>
+            <th>Etat</th>
+            <th></th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_deb)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nbr_jour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lieu_deb)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lieu_fin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.montant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.etat)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Confirmer", "Edit", new { id = item.id_reservation }, new { @class = "btn btn-warning" }) &nbsp;
+                    @Html.ActionLink("Détails", "Details", new { id = item.id_reservation }, new { @class = "btn btn-info" }) &nbsp;
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.id_reservation }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+}
+
+
+
+
+
+
+else
+{
+
+<div class="col-md-4">
+
+    @using (Html.BeginForm("Enregistrer", "Reservation", FormMethod.Post, new { id_reservation = "popupForm" }))
+    {
+        <br />
+        <br />
+        <br />
+        
+        <div>
+            <h1>Reserver La Voiture</h1>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label">Matricule</label>
+            <select class="form-control" id="matricule" name="matricule" placeholder="Matricule" required>
+                <option>Veuillez sélectionner</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">CIN</label>
+            <input type="text" class="form-control" id="cin" name="cin" placeholder="CIN" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Prenom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Date de Début</label>
+            <input type="date" class="form-control" id="date_deb" name="date_deb" placeholder="Date de Début" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Nombre de Jours</label>
+            <input type="number" class="form-control" id="nbr_jour" name="nbr_jour" placeholder="Nombre de Jours" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Lieu de prise en charge</label>
+            <select class="form-control" id="lieu_deb" name="lieu_deb" placeholder="Lieu de prise en charge" required>
+                <option>Marrakech</option>
+                <option>Casablanca</option>
+                <option>Tanger</option>
+                <option>Fés</option>
+                <option>Rabat</option>
+                <option>Agadir</option>
+                <option>Laayoune</option>
+                <option>Safi</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Lieu de dépôt</label>
+            <select class="form-control" id="lieu_fin" name="lieu_fin" placeholder="Lieu de dépôt" required>
+                <option>Marrakech</option>
+                <option>Casablanca</option>
+                <option>Tanger</option>
+                <option>Fés</option>
+                <option>Rabat</option>
+                <option>Agadir</option>
+                <option>Laayoune</option>
+                <option>Safi</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Louer la voiture" class="btn btn-block btn-success">
+        </div>
+    }
+</div>
+
+
+
+
+
+
+    @section scripts{
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script>
+            getVoiture();
+            load();
+            function load() {
+                $("#cin").attr("disabled", "disabled");
+                $("#nom").attr("disabled", "disabled");
+                $("#prenom").attr("disabled", "disabled");
+                $("#date_deb").attr("disabled", "disabled");
+                $("#nbr_jour").attr("disabled", "disabled");
+                $("#lieu_deb").attr("disabled", "disabled");
+                $("#lieu_fin").attr("disabled", "disabled");
+
+            }
+
+
+            function getVoiture() {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/Reservation/GetVoiture',
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+                        for (var i = 0; i < data.length; i++) {
+                            $("#matricule").append($("<option/>", {
+                                text: data[i].matricule
+                            }));
+                        }
+                    }
+                });
+            }
+
+            $("#matricule").change(function () {
+
+                etat();
+
+            });
+
+            function etat() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Reservation/GetEtat?matricule=' + $("#matricule").val(),
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data)
+
+                        var etatVoiture = data;
+
+                        if (etatVoiture == 'disponible') {
+                            $("#cin").removeAttr('disabled');
+                            $("#nom").removeAttr('disabled');
+                            $("#prenom").removeAttr('disabled');
+                            $("#date_deb").removeAttr('disabled');
+                            $("#nbr_jour").removeAttr('disabled');
+                            $("#lieu_deb").removeAttr('disabled');
+                            $("#lieu_fin").removeAttr('disabled');
+                        }
+                        else {
+                            $("#cin").attr("disabled", "disabled");
+                            $("#nom").attr("disabled", "disabled");
+                            $("#prenom").attr("disabled", "disabled");
+                            $("#date_deb").attr("disabled", "disabled");
+                            $("#nbr_jour").attr("disabled", "disabled");
+                            $("#lieu_deb").attr("disabled", "disabled");
+                            $("#lieu_fin").attr("disabled", "disabled");
+                        }
+                    }
+                });
+
+
+            }
+
+
+
+
+            getNomDeUser();
+
+            function getNomDeUser() {
+
+                $("#cin").keyup(function (e) {
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Reservation/GetNomApresCin?cin=' + $("#cin").val(),
+                        dataType: 'JSON',
+                        success: function (data) {
+                            console.log(data)
+                            $("#nom").val(data)
+                        }
+                    });
+                });
+            }
+            getPrenomDeUser();
+
+            function getPrenomDeUser() {
+
+                $("#cin").keyup(function (e) {
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Reservation/GetPrenomApresCin?cin=' + $("#cin").val(),
+                        dataType: 'JSON',
+                        success: function (data) {
+                            console.log(data)
+                            $("#prenom").val(data)
+                        }
+                    });
+                });
+            }
+        </script>
+    }
+
+
+}

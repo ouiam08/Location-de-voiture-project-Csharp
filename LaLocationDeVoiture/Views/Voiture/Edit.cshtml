@@ -1,0 +1,98 @@
+﻿@model LaLocationDeVoiture.Models.Voiture
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.matricule) + " Modification";
+}
+
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Modification des informations de la voiture de matricule : @Html.DisplayFor(model => model.matricule)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_voiture)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.matricule, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.matricule, new { htmlAttributes = new { @class = "form-control col-md-10 form-control" } })
+                @Html.ValidationMessageFor(model => model.matricule, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.marque, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.marque, new { htmlAttributes = new { @class = "form-control col-md-10 form-control" } })
+                @Html.ValidationMessageFor(model => model.marque, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.modele, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.modele, new { htmlAttributes = new { @class = "form-control col-md-10 form-control" } })
+                @Html.ValidationMessageFor(model => model.modele, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.motorisation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control col-md-10" id="motorisation" name="motorisation" placeholder="Motorisation" required>
+                    <option>Essence</option>
+                    <option>Diesel</option>
+                    <option>Hybride</option>
+                    <option>Electrique</option>
+                </select>
+                @*@Html.EditorFor(model => model.motorisation, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.motorisation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.etat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control col-md-10" id="etat" name="etat" placeholder="Etat" required>
+                    <option>disponible</option>
+                    <option>pas disponible</option>
+                </select>
+                @*@Html.EditorFor(model => model.etat, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.etat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prix, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prix, new { htmlAttributes = new { @class = "form-control col-md-10 form-control" } })
+                @Html.ValidationMessageFor(model => model.prix, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enregistrer" class="btn btn-block btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @if (Session["Email(a)"] != null)
+    {
+        @Html.ActionLink("Supprimer la voiture", "Delete", new { id = Model.id_voiture }, new { @class = "btn btn-danger" })
+
+    }
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-info" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

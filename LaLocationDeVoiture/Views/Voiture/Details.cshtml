@@ -1,0 +1,73 @@
+﻿@model LaLocationDeVoiture.Models.Voiture
+
+@{
+    ViewBag.Title = "Détails sur " + @Html.DisplayFor(model => model.matricule);
+}
+
+<br />
+<br />
+
+<div>
+    <h4>Plus d'informations sur la voiture de matricule : @Html.DisplayFor(model => model.matricule)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.matricule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matricule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modele)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modele)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.motorisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.motorisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prix)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["Email(a)"] != null)
+    {
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.id_voiture }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Supprimer", "Delete", new { id = Model.id_voiture }, new { @class = "btn btn-danger" })
+    }
+
+
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-info" })
+</p>

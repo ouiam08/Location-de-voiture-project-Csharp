@@ -1,0 +1,61 @@
+﻿
+
+@if (Session["PrenomUser"] == null && Session["PrenomAdmin"] == null)
+{
+
+    
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+            @Html.ActionLink("S'inscrire", "Register", "Account", null, null)
+        </li>
+        <li>
+            @Html.ActionLink("Se connecter", "Login", "Account", null, null)
+        </li>
+
+    </ul>
+
+}
+else
+{
+    if (Session["PrenomUser"] != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                @Html.ActionLink("Hi " + Session["PrenomUser"], "Index", "Home", null, null)
+            </li>
+            <li>
+                @Html.ActionLink("Déconnexion", "Logout", "Account", null, null)
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            
+            <li>@Html.ActionLink("Voitures", "Index", "Voiture")</li>
+            <li>@Html.ActionLink("Louer une Voiture", "Index", "Reservation")</li>
+
+        </ul>
+    }
+
+
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                @Html.ActionLink("Hi " + Session["PrenomAdmin"], "Index", "Home", null, null)
+            </li>
+            <li>
+                @Html.ActionLink("Déconnexion", "Logout", "Account", null, null)
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+            <li>@Html.ActionLink("Utilisateurs", "Index", "User")</li>
+            <li>@Html.ActionLink("Voitures", "Index", "Voiture")</li>
+            <li>@Html.ActionLink("Reservations", "Index", "Reservation", null, null)</li>
+        </ul>
+    }
+
+}
